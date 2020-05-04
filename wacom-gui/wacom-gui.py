@@ -96,13 +96,13 @@ class WacomGui(QMainWindow, wacom_menu.Ui_MainWindow):
             for dev_id, tablet in enumerate(data):
                 icon = ''
                 if 'svg' in tablet:
-                icon = os.path.join(self.cwd, "icons/devices/%spng" % tablet['svg'][:-3])
+                    icon = os.path.join(self.cwd, "icons/devices/%spng" % tablet['svg'][:-3])
                 if not os.path.isfile(os.path.join(os.getcwd(), icon)):
                     icon = os.path.join(self.cwd, 'icons/devices/generic.png')
                 for tool in ['pad', 'stylus']:
                     if tool in tablet:
                         self.tabletLayout.addButton(self.tabletButtons.addButton(tablet['cname'], tablet[tool]['id'],
-                                                                         str(dev), dev_id, icon))
+                                                                                 str(dev), dev_id, icon))
 
     def refreshTablets(self):
         self.tablet_data.get_connected_tablets()
@@ -279,6 +279,14 @@ class WacomGui(QMainWindow, wacom_menu.Ui_MainWindow):
         # load pad buttons
         self.config = config
         self.tablet_data.tablets[dev][dev_id]['config'] = self.config
+        if config not in self.configs[dev]:
+            self.configs[dev].update({config: {
+                'pad': {'bottons': []},
+                'stylus': {'mapping':{'rotate': 'False'}},
+                'eraser': {'pressurecurve':''},
+                'touch': []
+                }})
+            #return
         if not self.toolButtons.buttons[(0, 0)].isHidden():
             self.pad.init_keys(self.tablet_data.tablets[dev][dev_id]['pad']['id'],
                                self.tablet_data.tablets[dev][dev_id]['svg'],
@@ -304,7 +312,7 @@ class WacomGui(QMainWindow, wacom_menu.Ui_MainWindow):
 
     def tabletSelect(self, idx):
         if self.dev in self.configs and self.config in self.configs[self.dev]:
-        self.updateConfigs()
+            self.updateConfigs()
         self.setToolsAvail(idx)
         self.getConfigs(idx)
         # set first available tool as selected
