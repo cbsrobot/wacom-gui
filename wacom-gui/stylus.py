@@ -287,10 +287,11 @@ class WacomAttribSlider(QWidget):
         self.slider.setTickPosition(self.slider.TicksBelow)
         self.value = QLabel(str(self.slider.value()))
         self.value.setStyleSheet("QLabel { "
-                                 "font-weight: bold; color: #6DD7E8; "
-                                 "background-color: #444444; "
+        #                         "font-weight: bold; color: #6DD7E8; "
+        #                         "background-color: #444444; "
                                  "padding-left: 1px; "
-                                 "padding-right: 1px;}")
+                                 "padding-right: 1px; "
+                                 "font-size: 12px; }")
         self.value.setAlignment(Qt.AlignRight)
         self.value.setFixedSize(46, 14)
         if x_label is not None:
@@ -379,22 +380,24 @@ class WacomPressure(QWidget):
         self.slider.setTickInterval(1)
         self.slider.setTickPosition(self.slider.TicksBelow)
         self.value = QLabel("[%s]" % ",".join(str(i) for i in self.setting))
-        self.value.setStyleSheet("QLabel { font-weight: bold; color: #6DD7E8; "
-                                 "background-color: #444444; padding-left: 1px; "
-                                 "padding-right: 1px;}"
-                                 "QProgressBar {border: 1px solid black;"
-                                 "text-align: top;"
-                                 "padding: 1px;"
-                                 "border-radius: 2px;"
-                                 "background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1,"
-                                 "stop: 0 #fff,stop: 0.4999 #eee,stop: 0.5 #ddd,stop: 1 #eee );"
-                                 "width: 15px;}"
-                                 "QProgressBar::chunk {"
-                                 "background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1,"
-                                 "stop: 0 #a2e7f2,stop: 0.4999 #6DD7E8,stop: 0.5 #58aebc,stop: 1 #213f44 );"
-                                 "border-radius: 1px;"
-                                 "border: 1px solid black;"
-                                 "}")
+        self.value.setStyleSheet("QLabel { "
+                                 "font-size:12px; }")
+        #                         "font-weight: bold; color: #6DD7E8; "
+        #                         "background-color: #444444; padding-left: 1px; "
+        #                         "padding-right: 1px;}"
+        #                         "QProgressBar {border: 1px solid black;"
+        #                         "text-align: top;"
+        #                         "padding: 1px;"
+        #                         "border-radius: 2px;"
+        #                         "background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1,"
+        #                         "stop: 0 #fff,stop: 0.4999 #eee,stop: 0.5 #ddd,stop: 1 #eee );"
+        #                         "width: 15px;}"
+        #                         "QProgressBar::chunk {"
+        #                         "background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1,"
+        #                         "stop: 0 #a2e7f2,stop: 0.4999 #6DD7E8,stop: 0.5 #58aebc,stop: 1 #213f44 );"
+        #                         "border-radius: 1px;"
+        #                         "border: 1px solid black;"
+        #                         "}")
         self.value.setAlignment(Qt.AlignRight)
         self.value.setFixedSize(144, 14)
         self.min.setAlignment(Qt.AlignRight)
