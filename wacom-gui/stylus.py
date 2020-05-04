@@ -491,7 +491,9 @@ class Mapping(QWidget):
         # load displays
         self.displays = self.get_displays()
         # get display info
-        self.screen.addItems(sorted(self.displays.keys()))
+        for display in self.displays:
+            if self.screen.findText(display) == -1:
+                self.screen.addItem(display)
         self.screen.currentIndexChanged.connect(self.update_screen)
         # set rotation value
         if 'rotate' in self.settings.keys():
