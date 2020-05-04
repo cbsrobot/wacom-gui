@@ -299,6 +299,7 @@ class WacomGui(QMainWindow, wacom_menu.Ui_MainWindow):
                             self.configs[dev][config]['touch'])
 
     def tabletSelect(self, idx):
+        if self.dev in self.configs and self.config in self.configs[self.dev]:
         self.updateConfigs()
         self.setToolsAvail(idx)
         self.getConfigs(idx)
