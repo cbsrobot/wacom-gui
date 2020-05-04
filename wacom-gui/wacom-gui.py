@@ -99,7 +99,9 @@ class WacomGui(QMainWindow, wacom_menu.Ui_MainWindow):
                 icon = os.path.join(self.cwd, "icons/devices/%spng" % tablet['svg'][:-3])
                 if not os.path.isfile(os.path.join(os.getcwd(), icon)):
                     icon = os.path.join(self.cwd, 'icons/devices/generic.png')
-                self.tabletLayout.addButton(self.tabletButtons.addButton(tablet['cname'], tablet['pad']['id'],
+                for tool in ['pad', 'stylus']:
+                    if tool in tablet:
+                        self.tabletLayout.addButton(self.tabletButtons.addButton(tablet['cname'], tablet[tool]['id'],
                                                                          str(dev), dev_id, icon))
 
     def refreshTablets(self):
