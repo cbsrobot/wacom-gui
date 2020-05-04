@@ -398,12 +398,17 @@ class Touch(QWidget):
             return ('gesture', 'off')
 
     def reset(self):
-        self.touch.setChecked(False)
-        self.updateTouch()
-        self.taptime.set_defaults()
-        self.rawsample.set_defaults()
-        self.zoomdistance.set_defaults()
-        self.scrolldistance.set_defaults()
+        if self.touch:
+            self.touch.setChecked(False)
+            self.updateTouch()
+        if self.taptime:
+            self.taptime.set_defaults()
+        if self.rawsample:
+            self.rawsample.set_defaults()
+        if self.zoomdistance:
+            self.zoomdistance.set_defaults()
+        if self.scrolldistance:
+            self.scrolldistance.set_defaults()
 
     def get_config(self):
         settings = {}
