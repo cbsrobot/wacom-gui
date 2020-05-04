@@ -94,6 +94,8 @@ class WacomGui(QMainWindow, wacom_menu.Ui_MainWindow):
     def initTabletButtons(self):
         for dev, data in self.tablet_data.tablets.items():
             for dev_id, tablet in enumerate(data):
+                icon = ''
+                if 'svg' in tablet:
                 icon = os.path.join(self.cwd, "icons/devices/%spng" % tablet['svg'][:-3])
                 if not os.path.isfile(os.path.join(os.getcwd(), icon)):
                     icon = os.path.join(self.cwd, 'icons/devices/generic.png')
