@@ -211,7 +211,7 @@ class WacomGui(QMainWindow, wacom_menu.Ui_MainWindow):
             self.loadConfig(self.dev, self.dev_id, self.config)
             for idx, button in enumerate(self.configButtons.btn_grp.buttons()):
                 if button.text() == self.config:
-                    self.configButtons.btn_grp.buttons()[idx].setChecked(True)
+                    self.configButtons.btn_grp.buttons()[idx].click()
             self.tablet_data.tablets[self.dev][self.dev_id]['config'] = self.config
             self.removeConfig.setEnabled(True)
 
@@ -263,7 +263,7 @@ class WacomGui(QMainWindow, wacom_menu.Ui_MainWindow):
             self.loadConfig(dev, dev_id, self.config)
             for idx, button in enumerate(self.configButtons.btn_grp.buttons()):
                 if button.text() == self.config:
-                    self.configButtons.btn_grp.buttons()[idx].setChecked(True)
+                    self.configButtons.btn_grp.buttons()[idx].click()
             self.tablet_data.tablets[dev][dev_id]['config'] = self.config
         else:
             os.mkdir(self.tablet_data.tablets[dev][dev_id]['conf_path'])
@@ -304,13 +304,13 @@ class WacomGui(QMainWindow, wacom_menu.Ui_MainWindow):
         self.getConfigs(idx)
         # set first available tool as selected
         if not self.toolButtons.buttons[(0, 0)].isHidden():
-            self.toolButtons.buttons[(0, 0)].setChecked(True)
+            self.toolButtons.buttons[(0, 0)].click()
         elif not self.toolButtons.buttons[(1, 0)].isHidden():
-            self.toolButtons.buttons[(1, 0)].setChecked(True)
+            self.toolButtons.buttons[(1, 0)].click()
         elif not self.toolButtons.buttons[(2, 0)].isHidden():
-            self.toolButtons.buttons[(2, 0)].setChecked(True)
+            self.toolButtons.buttons[(2, 0)].click()
         elif not self.toolButtons.buttons[(3, 0)].isHidden():
-            self.toolButtons.buttons[(3, 0)].setChecked(True)
+            self.toolButtons.buttons[(3, 0)].click()
 
     def toolSelect(self, idx):
         if idx == 0 and not self.toolButtons.buttons[(idx, 0)].isHidden():
@@ -521,7 +521,7 @@ class ButtonGroup(QObject):
         self.buttons[(idx, 0)].setStyleSheet(self.btn_style)
         # set first button as selected
         if idx == 0:
-            self.buttons[(idx, 0)].setChecked(True)
+            self.buttons[(idx, 0)].click()
         if hide:
             self.buttons[(idx, 0)].setVisible(False)
         return self.buttons[(idx, 0)]
