@@ -564,7 +564,7 @@ class KeystrokeGui(QDialog, keystroke.Ui_Dialog):
         # check if valid multi-key command
         strokes = filter(None, re.split('{|}| ', str(self.keystrokeinput.text())))
         # invalid new shortcut
-        if strokes.__len__() < 1:
+        if list(strokes).__len__() < 1:
             warning = QMessageBox(QMessageBox.Warning, "Keystroke length too short",
                                         "Please enter more than a single keystroke to make a shortcut.")
             warning.exec_()
