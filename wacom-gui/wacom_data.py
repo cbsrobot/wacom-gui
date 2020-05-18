@@ -90,6 +90,7 @@ class Tablets:
                 for tool in ['touch', 'stylus', 'eraser', 'cursor', 'pad']:
                     if tool in detected[device]:
                         dev_count = max(dev_count, detected[device][tool]['id'].__len__())
+                        break
                 for x in range(0, dev_count):
                     idx = self.tablets[devID].__len__()
                     self.tablets[devID].append(copy.deepcopy(self.device_data[dev_type]))
