@@ -463,7 +463,6 @@ class Mapping(QWidget):
         self.mode_group.addButton(self.mode_mouse)
         self.mode_group.buttonClicked['QAbstractButton *'].connect(self.update_mode)
         self.mode_box = QGroupBox()
-        self.mode_box.setFixedSize(290, 40)
         self.lmode = QHBoxLayout()
         self.lmode.addWidget(self.mode_lbl)
         self.lmode.addWidget(self.mode_pen)
@@ -480,6 +479,7 @@ class Mapping(QWidget):
         self.lscreen.addWidget(self.screen, 0, 1)
         self.lscreen.addWidget(self.forced, 1, 1)
         self.main.addLayout(self.lscreen)
+        self.main.addStretch()
         # TODO: add tablet mapping
         self.setLayout(self.main)
 
