@@ -1,8 +1,3 @@
-# I've hacked this to run with Python 3 and PyQt5.
-
-I'm not a Python developer, so don't expect the migration to look pretty.
-
-Also fixed a bug in scanning for `Name=` key, which was preventing one of my tablets from being detected.
 
 # wacom-gui
 
@@ -21,6 +16,7 @@ You will require a few packages to get this working on your system:
 - Running from source
   - download the source, run wacom-gui.py from the wacom-gui directory
   - you can also build an RPM from the SPEC file in the wacom-gui directory
+  - libwacom-data-0.33 or newer
 - Running from RPM
   - download the RPM, install
   - RPM can be added to a repository for deployment
