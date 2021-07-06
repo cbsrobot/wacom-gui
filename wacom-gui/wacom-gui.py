@@ -205,6 +205,8 @@ class WacomGui(QMainWindow, wacom_menu.Ui_MainWindow):
             self.getConfigs(0)
 
     def newConfig(self):
+        if not self.dev:
+            return
         config = AddConfig.add_config(self.configs[self.dev].keys())
         if config is not None:
             # empty config

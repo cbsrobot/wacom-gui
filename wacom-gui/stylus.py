@@ -192,23 +192,37 @@ class Stylus(QTabWidget, stylus_ui.Ui_StylusWidget):
                 break
 
     def resetPen(self):
-        self.button2.reset()
-        self.button3.reset()
-        self.penPressure.set_defaults()
-        self.penThreshold.set_defaults()
-        self.penTaptime.set_defaults()
-        self.penRawsample.set_defaults()
-        self.penSuppress.set_defaults()
-        self.penTabletPC.setChecked(False)
+        if self.button2:
+            self.button2.reset()
+        if self.button3:
+            self.button3.reset()
+        if self.penPressure:
+            self.penPressure.set_defaults()
+        if self.penThreshold:
+            self.penThreshold.set_defaults()
+        if self.penTaptime:
+            self.penTaptime.set_defaults()
+        if self.penRawsample:
+            self.penRawsample.set_defaults()
+        if self.penSuppress:
+            self.penSuppress.set_defaults()
+        if self.penTabletPC:
+            self.penTabletPC.setChecked(False)
         self.updateTabletPC()
 
     def resetEraser(self):
-        self.button1.reset()
-        self.eraserPressure.set_defaults()
-        self.eraserThreshold.set_defaults()
-        self.eraserTaptime.set_defaults()
-        self.eraserRawsample.set_defaults()
-        self.eraserSuppress.set_defaults()
+        if self.button1:
+            self.button1.reset()
+        if self.eraserPressure:
+            self.eraserPressure.set_defaults()
+        if self.eraserThreshold:
+            self.eraserThreshold.set_defaults()
+        if self.eraserTaptime:
+            self.eraserTaptime.set_defaults()
+        if self.eraserRawsample:
+            self.eraserRawsample.set_defaults()
+        if self.eraserSuppress:
+            self.eraserSuppress.set_defaults()
 
     def eventFilter(self, source, event):
         if event.type() == QEvent.TabletMove:
@@ -567,11 +581,12 @@ class Mapping(QWidget):
 
     def update_screen(self):
         self.settings['maptooutput'] = str(self.screen.currentText())
-        coords = self.displays[str(self.screen.currentText())]['cmd']
-        cmd = "xsetwacom --set %s maptooutput %s" % (self.sid, coords)
-        os.popen(cmd)
-        cmd = "xsetwacom --set %s maptooutput %s" % (self.eid, coords)
-        os.popen(cmd)
+        if self.screen.currentText():
+            coords = self.displays[str(self.screen.currentText())]['cmd']
+            cmd = "xsetwacom --set %s maptooutput %s" % (self.sid, coords)
+            os.popen(cmd)
+            cmd = "xsetwacom --set %s maptooutput %s" % (self.eid, coords)
+            os.popen(cmd)
         self.update_forced()
 
     def update_forced(self):
